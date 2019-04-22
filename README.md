@@ -1,2 +1,2 @@
-# ss-traffic-counter
+# Traffic counter
 Traffic counter system
