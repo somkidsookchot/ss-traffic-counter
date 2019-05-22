@@ -1,0 +1,5 @@
+/.ss-traffic-counter-env
+/__pycache__
+/testscripts
+/app/__pycache__
+/exe/traffic_counter1
