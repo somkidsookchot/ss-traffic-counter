@@ -111,7 +111,7 @@ while True:
         
         #img,contours,h = cv2.findContours(dilatada,cv2.RETR_TREE,cv2.CHAIN_APPROX_SIMPLE) // depend on openCV version
         contours, hierarchy = cv2.findContours(dilatada, cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)
-        #cv2.line(image, (0, pos_count_line), (width, pos_count_line), (255,127,0), 3) 
+        cv2.line(image, (0, pos_count_line), (width, pos_count_line), (255,127,0), 3) 
         for(i,c) in enumerate(contours):
             (x,y,w,h) = cv2.boundingRect(c)
             validar_contours = (w >= width_min) and (h >= height_min)
@@ -150,7 +150,7 @@ while True:
                     cv2.line(image, (0, pos_count_line), (width, pos_count_line), (0,127,255), 3)  
                     detec.remove((x,y))
                     print("Cars in: "+str(carin))    
-                    print("Cars out: "+str(carin))
+                    print("Cars out: "+str(carout))
 
            
         cv2.putText(image, "Cars in: "+str(carin), (20, 70), cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 0, 255),1)
