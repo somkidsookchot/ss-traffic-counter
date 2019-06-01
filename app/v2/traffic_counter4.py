@@ -1,3 +1,10 @@
+#USAGE
+#Video version
+#python traffic_counter4.py --mqtt 192.168.1.36 --mqtttopic FrontGate --streamurl D:/Python/traffic_videos/video.mp4
+#
+#IP cam version
+#python traffic_counter4.py --mqtt 192.168.1.36 --mqtttopic FrontGate --streamurl rtsp:192.168.1.33:554/2
+
 import cv2
 import numpy as np
 import dlib
