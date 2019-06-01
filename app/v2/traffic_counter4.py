@@ -67,7 +67,6 @@ if(args.reset):
 ct = CentroidTracker(maxDisappeared=40, maxDistance=50)
 trackers = []
 trackableObjects = {}
-wdCount = 30
 currentCarID = 0
 totalFrames = 0
 carTracker = {}
@@ -194,6 +193,7 @@ while True:
                         client.publish(args.mqtttopic+"/crossedup",totalUp)
                         client.publish(args.mqtttopic+"/crosseddown",totalDown)
                         client.publish(args.mqtttopic+"/snapshotout",jpg_as_text)
+                        client.publish("/statusUpdate",'update data')
 
                     # if the direction is positive (indicating the object
                     # is moving down) AND the centroid is below the
@@ -204,6 +204,7 @@ while True:
                         client.publish(args.mqtttopic+"/crossedup",totalUp)
                         client.publish(args.mqtttopic+"/crosseddown",totalDown)
                         client.publish(args.mqtttopic+"/snapshotin",jpg_as_text)
+                        client.publish("/statusUpdate",'update data')
 
             # store the trackable object in our dictionary
             trackableObjects[objectID] = to
@@ -244,12 +245,11 @@ while True:
         fs_write.write("latest_count", arr)
         fs_write.release()
 
-        wdCount -= 1
-        if(wdCount == 0):
+        if totalFrames % 30 == 0:
             client.publish(args.mqtttopic+"/status",'active')
             client.publish(args.mqtttopic+"/crossedup",totalUp)
             client.publish(args.mqtttopic+"/crosseddown",totalDown)
-            wdCount = 30
+            client.publish("/statusUpdate",'update data')
 
         totalFrames += 1
 
